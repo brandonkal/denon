@@ -68,7 +68,7 @@ export type DenonConfig = RunnerConfig & Partial<CompleteDenonConfig>;
  * Parameters are not optional
  */
 export interface CompleteDenonConfig extends RunnerConfig {
-  [key: string]: any;
+  [key: string]: unknown;
   watcher: WatcherConfig;
   logger: LogConfig;
   args?: Args;
@@ -202,7 +202,7 @@ export async function readConfig(
 /**
  * Reads the denon config from a file
  */
-export async function writeConfigTemplate(template: string) {
+export async function writeConfigTemplate(template: string): Promise<void> {
   const templates = `https://deno.land/x/denon@${BRANCH}/templates`;
   const url = `${templates}/${template}`;
   log.info(`fetching template from ${url}`);
